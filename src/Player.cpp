@@ -1,9 +1,10 @@
 #include "Player.hpp"
 
-Player::Player(int _id):id(_id), mState(0), mThread(){}
+Player::Player(int _id):id(_id), mState(0),mStarted(false),mThread(){}
 
 Player::~Player()
 {
+    mState = 7;
     if(mThread.joinable()) mThread.join();
 }
 
@@ -45,7 +46,11 @@ void Player::pause()
 
 void Player::startPlayer()
 {
-    mThread = std::thread(&Player::playerMain,this);
+    if(!mStarted)
+    {
+        mThread = std::thread(&Player::playerMain,this);
+        mStarted = true;
+    }
 }
 
 void Player::playerMain()

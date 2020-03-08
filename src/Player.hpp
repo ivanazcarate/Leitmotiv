@@ -15,6 +15,7 @@ and  play it.
 
 class Player
 {
+    bool mStarted;
     const int id;
     std::atomic<int> mState;
     std::string mAudioFileURL;
