@@ -11,7 +11,7 @@ class Idea
     int id;
     std::shared_ptr<Motiv> mMotiv;
 public:
-	Idea(int id);
+	explicit Idea(int id);
 	int getId();
     bool hasMotiv();
     void assignMotiv(std::shared_ptr<Motiv> const& motiv);
