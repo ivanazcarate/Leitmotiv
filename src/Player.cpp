@@ -1,10 +1,13 @@
 #include "Player.hpp"
 
-Player::Player(int _id):id(_id), mState(0),mStarted(false),mThread(){}
+Player::Player(int _id):id(_id),mStarted(false),mThread()
+{
+    mState = static_cast<int>(PlayerState::idle);
+}
 
 Player::~Player()
 {
-    mState = 7;
+    mState = static_cast<int>(PlayerState::terminated);
     if(mThread.joinable()) mThread.join();
 }
 
@@ -32,21 +35,24 @@ void Player::loadMotiv(std::shared_ptr<Motiv> _motiv)
 
 void Player::stop()
 {
-    mState = 5;
+    mState = static_cast<int>(PlayerState::stopping);
 }
 
 void Player::play()
 {
-    mState = 1;
-    //while(music.getStatus() == 2 && mState==1){}
+    mState = static_cast<int>(PlayerState::starting);
 }
 
 void Player::pause()
 {
-    // change to pausing
-    mState = 3;
+    mState = static_cast<int>(PlayerState::pausing);
 }
 
+/**
+* Creates a new thread if the Player has not already
+* been started. The thread runs the method playerMain()
+* which implements the audio player state machine.
+*/
 void Player::startPlayer()
 {
     if(!mStarted)
@@ -59,27 +65,28 @@ void Player::startPlayer()
 void Player::playerMain()
 {
     sf::Music music;
-    // QnD States: 0 idle, 1 starting, 2 playing, 3 pausing, 4 paused, 5 stopping, 6 stopped
-    // States missing : loading a new file -> goes back to...stopped
-    while(mState != 7)  // 7 Terminate
+    // State Machine
+    // Run while it is not in "terminated" state
+    while(mState != static_cast<int>(PlayerState::terminated))
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(200));
-        if(mState == 1)
+        if(mState == static_cast<int>(PlayerState::starting))
         {
             if (!music.openFromFile(mAudioFileURL)) return;
             music.play();
-            mState = 2;
-            // play music ... mState = 2, playing
+            mState = static_cast<int>(PlayerState::playing);
         }
-        if(mState == 3)  // pausing
+        // pausing
+        if(mState == static_cast<int>(PlayerState::pausing)) 
         {
             music.pause();
-            mState = 4; // paused
+            mState = static_cast<int>(PlayerState::paused);
         }
-        if(mState == 5) // stopping
+        // stopping
+        if(mState == static_cast<int>(PlayerState::stopping))
         {
             music.stop();
-            mState = 6;  // stopped
+            mState = static_cast<int>(PlayerState::stopped);
         }
 
     }

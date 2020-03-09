@@ -13,6 +13,24 @@ and  play it.
 #include <atomic>
 #include <thread>
 
+/*
+ This enum class will help make the
+ state changes, in the implementation
+ of the state machine, clearer.
+*/
+enum class PlayerState
+{
+    idle,
+    starting,
+    playing,
+    pausing,
+    paused,
+    stopping,
+    stopped,
+    terminated
+};
+
+
 class Player
 {
     bool mStarted;
