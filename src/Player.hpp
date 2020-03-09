@@ -30,7 +30,7 @@ public:
     void play();
     void pause();
     void stop();
-    void loadMotiv(Motiv& _motiv);
+    void loadMotiv(std::shared_ptr<Motiv> _motiv);
     void startPlayer();
 };
 

@@ -17,14 +17,17 @@ int Player::getState()
 {
     return mState;
 }
-/*
-  Load the motiv to be played by the
-  Player object.
+/**
+* Loads a motiv to be played into the player by 
+* setting mAudioFileURL to the motiv's URL
+*
+* @param  _motiv shared pointer to a motiv object 
+* @return
 */
-void Player::loadMotiv(Motiv& _motiv)
+void Player::loadMotiv(std::shared_ptr<Motiv> _motiv)
 {
-    mAudioFileURL = _motiv.getAudioURL();
-    mState = 5; // Stop the current audio
+    mAudioFileURL = _motiv->getAudioURL();
+    mState = static_cast<int>(PlayerState::stopping); 
 }
 
 void Player::stop()
