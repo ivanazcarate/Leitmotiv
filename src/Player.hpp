@@ -1,5 +1,5 @@
 /***************************************************
-Player class, can be used to load a Leitmotiv 
+(Audio)Player class, which can be used to load a Leitmotiv 
 and  play it. 
 
 
@@ -14,9 +14,8 @@ and  play it.
 #include <thread>
 
 /*
- This enum class will help make the
- state changes, in the implementation
- of the state machine, clearer.
+Enum class with the states
+of the state machine
 */
 enum class PlayerState
 {
