@@ -2,12 +2,12 @@
 
 Player::Player(int _id):id(_id),mStarted(false),mThread()
 {
-    mState = static_cast<int>(PlayerState::idle);
+    mState = PlayerState::stopped;
 }
 
 Player::~Player()
 {
-    mState = static_cast<int>(PlayerState::terminated);
+    mState = PlayerState::terminated;
     if(mThread.joinable()) mThread.join();
 }
 
@@ -38,7 +38,7 @@ void Player::loadMotiv(std::shared_ptr<Motiv> _motiv)
 {
     assert(hasStarted());
     mAudioFileURL = _motiv->getAudioURL();
-    mState = static_cast<int>(PlayerState::stopping); 
+    mState = PlayerState::loading;
 }
 
 void Player::stop()

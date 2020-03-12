@@ -26,6 +26,7 @@ enum class PlayerState
     paused,
     stopping,
     stopped,
+    loading,
     terminated
 };
 
