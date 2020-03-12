@@ -10,21 +10,21 @@ AudioPlayerPanel::AudioPlayerPanel(wxPanel * parent)
         wxPoint(10, 45));
     mStop = new wxButton(this, ID_Stop, wxT("Stop"),
         wxPoint(10, 85));
+    mLoad = new wxButton(this, ID_Load, wxT("Load"),
+        wxPoint(150, 5));
     Connect(ID_Play, wxEVT_COMMAND_BUTTON_CLICKED,
         wxCommandEventHandler(AudioPlayerPanel::OnPlay));
     Connect(ID_Pause, wxEVT_COMMAND_BUTTON_CLICKED,
         wxCommandEventHandler(AudioPlayerPanel::OnPause));
     Connect(ID_Stop, wxEVT_COMMAND_BUTTON_CLICKED,
         wxCommandEventHandler(AudioPlayerPanel::OnStop));
+    Connect(ID_Load, wxEVT_COMMAND_BUTTON_CLICKED,
+        wxCommandEventHandler(AudioPlayerPanel::OnLoad));
 }
 
 void AudioPlayerPanel::OnPlay(wxCommandEvent & WXUNUSED(event))
 {
-    // This code is temporary here in order
-    // to test if playing audio using the GUI works
-    auto m = std::make_shared<Motiv>(123222,"../resources/leitmotives/lm_2.wav");
     MainFrame *c = (MainFrame *)mParent->GetParent();
-    c->mPlayer->loadMotiv(m);
     c->mPlayer->play();
 }
 
@@ -38,5 +38,14 @@ void AudioPlayerPanel::OnStop(wxCommandEvent & WXUNUSED(event))
 {
     MainFrame *c = (MainFrame *)mParent->GetParent();
     c->mPlayer->stop();
+}
+
+void AudioPlayerPanel::OnLoad(wxCommandEvent & WXUNUSED(event))
+{
+    // This code is temporary here in order
+    // to test if playing audio using the GUI works
+    auto m = std::make_shared<Motiv>(1,"../resources/leitmotives/lm_2.wav");
+    MainFrame *c = (MainFrame *)mParent->GetParent();
+    c->mPlayer->loadMotiv(m);
 }
 

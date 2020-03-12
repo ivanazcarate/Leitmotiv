@@ -15,7 +15,8 @@ enum
 {
     ID_Play = 1,
     ID_Pause = 2,
-    ID_Stop = 3
+    ID_Stop = 3,
+    ID_Load = 4
 };
 
 class AudioPlayerPanel : public wxPanel
@@ -26,10 +27,12 @@ public:
     void OnPlay(wxCommandEvent & event);
     void OnPause(wxCommandEvent & event);
     void OnStop(wxCommandEvent & event);
+    void OnLoad(wxCommandEvent & event);
 
     wxButton *mPlay;
     wxButton *mPause;
     wxButton *mStop;
+    wxButton *mLoad;
     wxPanel *mParent;
 
 };
