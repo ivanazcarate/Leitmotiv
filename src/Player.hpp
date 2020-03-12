@@ -32,9 +32,9 @@ enum class PlayerState
 
 class Player
 {
-    bool mStarted;
     const int id;
-    std::atomic<int> mState;
+    bool mStarted;
+    std::atomic<PlayerState> mState;
     std::string mAudioFileURL;
     std::thread mThread;
     void playerMain();
@@ -43,13 +43,13 @@ public:
     Player(int _id);
     ~Player();
     int getId();
-    int getState();
+    PlayerState getState();
+    bool hasStarted();
     void play();
     void pause();
     void stop();
     void loadMotiv(std::shared_ptr<Motiv> _motiv);
     void startPlayer();
 };
-
 
 #endif //__PLAYER_H__

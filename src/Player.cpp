@@ -16,10 +16,17 @@ int Player::getId()
     return id;
 }
 
-int Player::getState()
+PlayerState Player::getState()
 {
     return mState;
 }
+
+// Return true if the player has been started
+bool Player::hasStarted()
+{
+    return mStarted;
+}
+
 /**
 * Loads a motiv to be played into the player by 
 * setting mAudioFileURL to the motiv's URL
