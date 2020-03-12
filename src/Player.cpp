@@ -36,22 +36,26 @@ bool Player::hasStarted()
 */
 void Player::loadMotiv(std::shared_ptr<Motiv> _motiv)
 {
+    assert(hasStarted());
     mAudioFileURL = _motiv->getAudioURL();
     mState = static_cast<int>(PlayerState::stopping); 
 }
 
 void Player::stop()
 {
+    assert(hasStarted());
     mState = static_cast<int>(PlayerState::stopping);
 }
 
 void Player::play()
 {
+    assert(hasStarted());
     mState = static_cast<int>(PlayerState::starting);
 }
 
 void Player::pause()
 {
+    assert(hasStarted());
     mState = static_cast<int>(PlayerState::pausing);
 }
 

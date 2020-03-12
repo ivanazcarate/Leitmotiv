@@ -12,7 +12,7 @@ and  play it.
 #include <SFML/Audio.hpp>
 #include <atomic>
 #include <thread>
-
+#include <cassert>
 /*
 Enum class with the states
 of the state machine
