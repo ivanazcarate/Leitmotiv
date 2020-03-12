@@ -73,32 +73,42 @@ void Player::startPlayer()
     }
 }
 
+/*
+* This method implements the state machine
+* for the audio player.
+*/
+
 void Player::playerMain()
 {
     sf::Music music;
-    // State Machine
-    // Run while it is not in "terminated" state
-    while(mState != static_cast<int>(PlayerState::terminated))
+    while(mState != PlayerState::terminated)
     {
-        std::this_thread::sleep_for(std::chrono::milliseconds(200));
-        if(mState == static_cast<int>(PlayerState::starting))
-        {
-            if (!music.openFromFile(mAudioFileURL)) return;
-            music.play();
-            mState = static_cast<int>(PlayerState::playing);
-        }
-        // pausing
-        if(mState == static_cast<int>(PlayerState::pausing)) 
-        {
-            music.pause();
-            mState = static_cast<int>(PlayerState::paused);
-        }
-        // stopping
-        if(mState == static_cast<int>(PlayerState::stopping))
-        {
-            music.stop();
-            mState = static_cast<int>(PlayerState::stopped);
-        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
+        switch(mState)
+        {
+            case(PlayerState::starting):
+                //if (!music.openFromFile(mAudioFileURL)) return;
+                music.play();
+                mState = PlayerState::playing;
+                break;
+
+            case(PlayerState::pausing):
+                music.pause();
+                mState = PlayerState::paused;
+                break;
+
+            case(PlayerState::stopping):
+                music.stop();
+                mState = PlayerState::stopped;
+                break;
+
+            case(PlayerState::loading):
+                if (!music.openFromFile(mAudioFileURL)) return;
+                mState = PlayerState::idle;
+                break;
+            default:
+                break;
+        }
     }
 }
