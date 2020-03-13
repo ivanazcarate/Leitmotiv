@@ -46,6 +46,6 @@ void AudioPlayerPanel::OnLoad(wxCommandEvent & WXUNUSED(event))
     // to test if playing audio using the GUI works
     auto m = std::make_shared<Motiv>(1,"../resources/leitmotives/lm_2.wav");
     MainFrame *c = (MainFrame *)mParent->GetParent();
-    c->mPlayer->loadMotiv(m);
+    c->mPlayer->setAudioFileURL(m->getAudioURL());
 }
 

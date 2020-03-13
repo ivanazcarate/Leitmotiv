@@ -27,17 +27,10 @@ bool Player::hasStarted()
     return mStarted;
 }
 
-/**
-* Loads a motiv to be played into the player by 
-* setting mAudioFileURL to the motiv's URL
-*
-* @param  _motiv shared pointer to a motiv object 
-* @return
-*/
-void Player::loadMotiv(std::shared_ptr<Motiv> _motiv)
+void Player::setAudioFileURL(std::string _AudioFileURL)
 {
     assert(hasStarted());
-    mAudioFileURL = _motiv->getAudioURL();
+    mAudioFileURL = _AudioFileURL;
     mState = PlayerState::loading;
 }
 

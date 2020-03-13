@@ -8,7 +8,6 @@ and  play it.
 #ifndef __PLAYER_H__
 #define __PLAYER_H__
 
-#include "Motiv.hpp"
 #include <SFML/Audio.hpp>
 #include <atomic>
 #include <thread>
@@ -49,7 +48,7 @@ public:
     void play();
     void pause();
     void stop();
-    void loadMotiv(std::shared_ptr<Motiv> _motiv);
+    void setAudioFileURL(std::string _AudioFileURL);
     void startPlayer();
 };
 
