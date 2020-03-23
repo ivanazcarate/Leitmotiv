@@ -6,8 +6,6 @@ MainFrame::MainFrame(const wxString& title, const wxPoint& pos, const wxSize& si
 
     mParent = new wxPanel(this, wxID_ANY);
     mAudioPlayerPanel = new AudioPlayerPanel(mParent);
-    mPlayer = std::make_shared<Player>(1);
-    mPlayer->startPlayer();
     wxBoxSizer *hbox = new wxBoxSizer(wxVERTICAL);
     hbox->Add(mAudioPlayerPanel, 0.5, wxEXPAND | wxALL, 5);
     mParent->SetSizer(hbox);

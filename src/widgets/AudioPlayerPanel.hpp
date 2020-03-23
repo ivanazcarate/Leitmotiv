@@ -9,6 +9,7 @@
 #define __AUDIO_PLAYER_PANEL_H__
 
 #include <wx/wx.h>
+#include "Player.hpp"
 #include <wx/panel.h>
 
 enum
@@ -34,6 +35,8 @@ public:
     wxButton *mStop;
     wxButton *mLoad;
     wxPanel *mParent;
+    std::shared_ptr<Player> mPlayer;
+
 
 };
 

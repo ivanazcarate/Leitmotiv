@@ -7,7 +7,6 @@
 #define __MAINFRAME_H__
 
 #include <wx/wx.h>
-#include "Player.hpp"
 #include "Motiv.hpp"
 #include "AudioPlayerPanel.hpp"
 
@@ -26,8 +25,6 @@ public:
     MainFrame( const wxString &title, const wxPoint &pos, const wxSize &size );
     wxPanel *mParent;
     AudioPlayerPanel *mAudioPlayerPanel;
-    std::shared_ptr<Player> mPlayer;
-
 };
 
 #endif
