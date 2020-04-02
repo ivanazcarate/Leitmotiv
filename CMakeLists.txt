@@ -10,6 +10,7 @@ include(${wxWidgets_USE_FILE})
 add_executable(bin  src/app/App.cpp
                     src/widgets/MainFrame.cpp
                     src/widgets/AudioPlayerPanel.cpp
+                    src/widgets/IdeasPanel.cpp
                     src/Idea.cpp
                     src/Motiv.cpp
                     src/Player.cpp
