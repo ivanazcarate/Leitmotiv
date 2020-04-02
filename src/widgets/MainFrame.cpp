@@ -6,8 +6,10 @@ MainFrame::MainFrame(const wxString& title, const wxPoint& pos, const wxSize& si
 
     mParent = new wxPanel(this, wxID_ANY);
     mAudioPlayerPanel = new AudioPlayerPanel(mParent);
-    wxBoxSizer *hbox = new wxBoxSizer(wxVERTICAL);
-    hbox->Add(mAudioPlayerPanel, 0.5, wxEXPAND | wxALL, 5);
+    mIdeasPanel = new IdeasPanel(mParent);
+    wxBoxSizer *hbox = new wxBoxSizer(wxHORIZONTAL);
+    hbox->Add(mAudioPlayerPanel, 1, wxEXPAND | wxALL, 5);
+    hbox->Add(mIdeasPanel, 1, wxEXPAND | wxALL, 5);
     mParent->SetSizer(hbox);
     wxMenu *menuProject = new wxMenu;
     menuProject->Append(ID_Project, "&Project...\tCtrl-H","");
