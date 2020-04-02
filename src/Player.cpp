@@ -32,6 +32,7 @@ void Player::setAudioFileURL(std::string _AudioFileURL)
     assert(hasStarted());
     mAudioFileURL = _AudioFileURL;
     mState = PlayerState::loading;
+    std::this_thread::sleep_for(std::chrono::milliseconds(200));
 }
 
 void Player::stop()
