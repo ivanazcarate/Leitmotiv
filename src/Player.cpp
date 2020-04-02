@@ -37,19 +37,19 @@ void Player::setAudioFileURL(std::string _AudioFileURL)
 void Player::stop()
 {
     assert(hasStarted());
-    mState = static_cast<int>(PlayerState::stopping);
+    mState = PlayerState::stopping;
 }
 
 void Player::play()
 {
     assert(hasStarted());
-    mState = static_cast<int>(PlayerState::starting);
+    mState = PlayerState::starting;
 }
 
 void Player::pause()
 {
     assert(hasStarted());
-    mState = static_cast<int>(PlayerState::pausing);
+    mState = PlayerState::pausing;
 }
 
 /**
