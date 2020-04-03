@@ -29,7 +29,7 @@ public:
     void OnPause(wxCommandEvent & event);
     void OnStop(wxCommandEvent & event);
     void OnLoad(wxCommandEvent & event);
-
+private:
     wxButton *mPlay;
     wxButton *mPause;
     wxButton *mStop;
