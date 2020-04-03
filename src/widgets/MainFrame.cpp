@@ -4,13 +4,26 @@ MainFrame::MainFrame(const wxString& title, const wxPoint& pos, const wxSize& si
         : wxFrame(NULL, wxID_ANY, title, pos, size)
 {
 
+    // Main Panel
     mParent = new wxPanel(this, wxID_ANY);
-    mAudioPlayerPanel = new AudioPlayerPanel(mParent);
+
+    // Child Panels
+    
+    //mAudioPlayerPanel = new AudioPlayerPanel(mParent);
+    mRightPanel = new RightPanel(mParent);
     mIdeasPanel = new IdeasPanel(mParent);
+    mWorkspacePanel = new WorkspacePanel(mParent);
+   
+    // BoxSizer for the Panels
     wxBoxSizer *hbox = new wxBoxSizer(wxHORIZONTAL);
-    hbox->Add(mAudioPlayerPanel, 1, wxEXPAND | wxALL, 5);
-    hbox->Add(mIdeasPanel, 1, wxEXPAND | wxALL, 5);
+    hbox->Add(mIdeasPanel, 1, wxEXPAND | wxALL, 0);
+    hbox->Add(mWorkspacePanel, 2 , wxEXPAND | wxALL, 0);
+    hbox->Add(mRightPanel, 1, wxEXPAND | wxALL, 0);
+    //hbox->Add(mAudioPlayerPanel, 1, wxEXPAND | wxALL, 0);
+    
     mParent->SetSizer(hbox);
+ 
+    // Frame Menu
     wxMenu *menuProject = new wxMenu;
     menuProject->Append(ID_Project, "&Project...\tCtrl-H","");
     menuProject->AppendSeparator();

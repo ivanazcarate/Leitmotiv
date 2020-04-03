@@ -10,6 +10,8 @@
 #include "Motiv.hpp"
 #include "AudioPlayerPanel.hpp"
 #include "IdeasPanel.hpp"
+#include "WorkspacePanel.hpp"
+#include "RightPanel.hpp"
 
 enum
 {
@@ -27,6 +29,8 @@ public:
     wxPanel *mParent;
     AudioPlayerPanel *mAudioPlayerPanel;
     IdeasPanel *mIdeasPanel;
+    WorkspacePanel *mWorkspacePanel;
+    RightPanel *mRightPanel;
 };
 
 #endif
