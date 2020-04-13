@@ -4,10 +4,13 @@ AudioPlayerPanel::AudioPlayerPanel(wxPanel * parent)
        : wxPanel(parent, -1, wxPoint(-1, -1), wxSize(-1, -1), wxBORDER_SUNKEN)
 {
     mParent = parent;
-    wxBoxSizer *hbox = new wxBoxSizer(wxVERTICAL);
+    
+    wxBoxSizer *hbox = new wxBoxSizer(wxHORIZONTAL);
+    wxBoxSizer *vbox_1 = new wxBoxSizer(wxVERTICAL);
+    wxBoxSizer *vbox_2 = new wxBoxSizer(wxVERTICAL);
+
     mPlayer = std::make_shared<Player>(1);
     mPlayer->startPlayer();
-    
     mPlay = new wxButton(this, ID_Play, wxT("Play"),
         wxPoint(10, 5));
     mPause = new wxButton(this, ID_Pause, wxT("Pause"),
@@ -24,10 +27,13 @@ AudioPlayerPanel::AudioPlayerPanel(wxPanel * parent)
         wxCommandEventHandler(AudioPlayerPanel::OnStop));
     Connect(ID_Load, wxEVT_COMMAND_BUTTON_CLICKED,
         wxCommandEventHandler(AudioPlayerPanel::OnLoad));
-    hbox->Add(mPlay, 1, wxEXPAND | wxALL, 5);
-    hbox->Add(mPause, 1, wxEXPAND | wxALL, 5);
-    hbox->Add(mStop, 1, wxEXPAND | wxALL, 5);
-    hbox->Add(mLoad, 1, wxEXPAND | wxALL, 5);
+    vbox_1->Add(mPlay, 1, wxALIGN_CENTER, 5);
+    vbox_1->Add(mPause, 1, wxALIGN_CENTER, 5);
+    vbox_1->Add(mStop, 1, wxALIGN_CENTER, 5);
+    vbox_2->Add(mLoad, 0.5, wxALIGN_CENTER | wxALIGN_TOP , 5);
+
+    hbox -> Add(vbox_1, 1, wxEXPAND | wxALL, 5);
+    hbox -> Add(vbox_2, 1, wxEXPAND | wxALL, 5);
     this->SetSizer(hbox);
 }
 
